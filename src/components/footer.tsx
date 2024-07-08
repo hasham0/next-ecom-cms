@@ -3,7 +3,11 @@ import React from "react";
 type Props = {};
 
 const Footer = (props: Props) => {
-  return <></>;
+  return (
+    <>
+      <h1>footer</h1>
+    </>
+  );
 };
 
 export default Footer;

@@ -11,7 +11,7 @@ const Navbar = (props: Props) => {
   return (
     <>
       <div className="relative h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
-        {/* MOBILE */}
+        {/* <!-- MOBILE --> */}
         <div className="flex h-full items-center justify-between md:hidden">
           <Link href={"/"}>
             <div className="text-2xl tracking-wide">LAMA</div>
@@ -19,7 +19,7 @@ const Navbar = (props: Props) => {
           <Menu />
         </div>
 
-        {/* BIGGER SCREEN */}
+        {/* <!-- BIGGER SCREEN  --> */}
         <div className="hidden h-full items-center justify-between gap-8 md:flex">
           {/* LEFT */}
           <div className="flex w-1/3 items-center justify-center gap-12 xl:w-1/2">
@@ -32,7 +32,7 @@ const Navbar = (props: Props) => {
               />
               <div className="text-2xl tracking-wide">LAMA</div>
             </Link>
-            <div className="ga-4 hidden gap-4 xl:flex">
+            <div className="hidden gap-4 xl:flex">
               <Link href={"/"}>Homepage</Link>
               <Link href={"/"}>Shop</Link>
               <Link href={"/"}>Deals</Link>

@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import CartModel from "./cart-model";
 
 type Props = {};
@@ -11,6 +11,8 @@ const NavIcons = (props: Props) => {
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const router = useRouter();
+
+  // !: temporaray
   const isLoggedIn = false;
   const hanldeProfile = () => {
     if (!isLoggedIn) {
@@ -18,6 +20,7 @@ const NavIcons = (props: Props) => {
     }
     setIsProfileOpen((pre) => !pre);
   };
+
   return (
     <div className="relative flex items-center gap-4 px-2 xl:gap-6">
       <Image
@@ -50,7 +53,7 @@ const NavIcons = (props: Props) => {
           className="cursor-pointer"
           onClick={() => setIsCartOpen((pre) => !pre)}
         />
-        <div className="bg-primary absolute -right-4 -top-4 flex h-6 w-6 items-center justify-center rounded-full text-sm text-white">
+        <div className="absolute -right-4 -top-4 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-sm text-white">
           2
         </div>
         {isCartOpen && <CartModel />}

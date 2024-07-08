@@ -7,6 +7,7 @@ type Props = {};
 
 const SearchBar = (props: Props) => {
   const router = useRouter();
+
   const handleSearchQuery = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
