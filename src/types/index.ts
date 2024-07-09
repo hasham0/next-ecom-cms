@@ -6,5 +6,8 @@ type SlidesTs = {
   url: string;
   bg: string;
 };
-
-export type { SlidesTs };
+type ImagesTS = {
+  id: number;
+  url: string;
+};
+export type { SlidesTs, ImagesTS };

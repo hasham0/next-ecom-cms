@@ -7,7 +7,7 @@ type Props = {};
 const CartModel = (props: Props) => {
   const cartItems = true;
   return (
-    <div className="absolute right-0 top-12 z-20 flex flex-col gap-4 bg-white p-5 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+    <section className="absolute right-0 top-12 z-20 flex flex-col gap-4 bg-white p-5 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
       {!cartItems ? (
         <>
           <div>Cart is empty</div>
@@ -70,7 +70,7 @@ const CartModel = (props: Props) => {
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 };
 

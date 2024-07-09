@@ -1,5 +1,5 @@
 "use client";
-import slides from "@/lib/slidesData";
+import slides from "@/utils/slidesData";
 import { SlidesTs } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,10 +19,10 @@ const Slider = (props: Props) => {
   }, []);
 
   return (
-    <div className="h-[calc(100vh-80px)] overflow-hidden">
-      {/* <!-- slides --> */}
+    <section className="relative h-[calc(100vh-80px)] overflow-hidden">
+      {/* slides */}
       <div
-        className="flex h-full w-max scroll-smooth transition-all duration-1000 ease-in-out"
+        className="flex h-full w-max transition-transform duration-1000 ease-in-out"
         style={{ transform: `translateX(-${current * 100}vw)` }}
       >
         {slides.map((slide: SlidesTs, index: number) => (
@@ -57,13 +57,13 @@ const Slider = (props: Props) => {
           </div>
         ))}
       </div>
-      <div className="absolute bottom-8 left-1/2 m-auto flex gap-4">
-        {/* <!-- slide controls --> */}
-        {slides.map((slide: SlidesTs, index: number) => (
+      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 transform gap-4">
+        {/* slide controls */}
+        {slides.map((_, index: number) => (
           <div
             key={index}
-            onClick={() => setCurrent(index)}
             className={`flex h-3 w-3 cursor-pointer items-center justify-center rounded-full ring-1 ring-gray-700 ${current === index ? "scale-150" : ""}`}
+            onClick={() => setCurrent(index)}
           >
             {current === index && (
               <div className="h-[6px] w-[6px] rounded-full bg-gray-600"></div>
@@ -71,7 +71,7 @@ const Slider = (props: Props) => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar, Footer } from "@/components";
+import WixContextPro from "@/context/WixContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <WixContextPro>
+          <Navbar />
+          {children}
+          <Footer />
+        </WixContextPro>
       </body>
     </html>
   );

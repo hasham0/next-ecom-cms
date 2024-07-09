@@ -22,6 +22,13 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "www.freepik.com",
+        port: "",
+        pathname: "/**",
+      },
+
+      {
+        protocol: "https",
         hostname: "static.wixstatic.com",
         port: "",
         pathname: "/**",

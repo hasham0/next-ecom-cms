@@ -6,7 +6,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div className="xl:32 mt-24 bg-gray-100 px-4 py-24 text-sm md:px-8 lg:px-16 2xl:px-64">
+    <section className="xl:32 mt-24 bg-gray-100 px-4 py-24 text-sm md:px-8 lg:px-16 2xl:px-64">
       {/* TOP */}
       <div className="flex flex-col justify-between gap-24 md:flex-row">
         {/* LEFT */}
@@ -100,7 +100,7 @@ const Footer = (props: Props) => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

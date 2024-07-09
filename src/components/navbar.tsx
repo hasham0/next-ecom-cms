@@ -10,7 +10,7 @@ type Props = {};
 const Navbar = (props: Props) => {
   return (
     <>
-      <div className="relative h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+      <nav className="relative h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
         {/* <!-- MOBILE --> */}
         <div className="flex h-full items-center justify-between md:hidden">
           <Link href={"/"}>
@@ -47,7 +47,7 @@ const Navbar = (props: Props) => {
             <NavIcons />
           </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 };
