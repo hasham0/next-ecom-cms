@@ -4,23 +4,56 @@ import Link from "next/link";
 import React from "react";
 import { products } from "@wix/stores";
 import DOMPurify from "isomorphic-dompurify";
+import Pagination from "./pagination";
 
 type Props = {
   categoryID: string;
   limit?: number;
-  searchParams?: any;
+  // searchParams?: {
+  //   cat?: string;
+  //   type?: string;
+  //   min?: number;
+  //   max?: number;
+  //   sort?: string;
+  //   name?: string;
+  // };
+  searchParams: any;
 };
+const PRODUCT_PER_PAGE = 8;
 
-const ProductList = async ({ categoryID, limit = 20 }: Props) => {
+const ProductList = async ({ categoryID, limit = 20, searchParams }: Props) => {
   const wixClient = await wixClientServer();
-  const { items } = await wixClient.products
+  const response = wixClient.products
     .queryProducts()
+    .startsWith("name", searchParams?.name || "")
     .eq("collectionIds", categoryID)
-    .limit(limit)
-    .find();
+    .hasSome(
+      "productType",
+      searchParams?.type ? [searchParams.type] : ["physical", "digital"],
+    )
+    .gt("priceData.price", searchParams?.min || 0)
+    .lt("priceData.price", searchParams?.max || 999999)
+    .limit(limit || PRODUCT_PER_PAGE)
+    .skip(
+      searchParams?.page
+        ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
+        : 0,
+    );
+
+  if (searchParams?.sort) {
+    const [sortType, sortBy] = searchParams.sort.split(" ");
+
+    if (sortType === "asc") {
+      response.ascending(sortBy);
+    }
+    if (sortType === "desc") {
+      response.descending(sortBy);
+    }
+  }
+  const productData = await response.find();
   return (
     <section className="mt-12 flex flex-wrap justify-between gap-x-8 gap-y-16">
-      {items.map((product: products.Product, index: number) => (
+      {productData.items.map((product: products.Product, index: number) => (
         <Link
           key={product._id}
           href={`/${product.slug}`}
@@ -39,7 +72,9 @@ const ProductList = async ({ categoryID, limit = 20 }: Props) => {
             />
             {product.media?.items && (
               <Image
-                src={product.media?.items[1]?.image?.url || "/product.png"}
+                src={
+                  product.media?.items[1]?.image?.url || "/images/product.png"
+                }
                 alt="coffee"
                 priority
                 fill
@@ -71,6 +106,13 @@ const ProductList = async ({ categoryID, limit = 20 }: Props) => {
           </button>
         </Link>
       ))}
+      {searchParams?.cat || searchParams?.name ? (
+        <Pagination
+          currentPage={productData.currentPage || 0}
+          hasPrev={productData.hasPrev()}
+          hasNext={productData.hasNext()}
+        />
+      ) : null}
     </section>
   );
 };

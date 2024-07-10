@@ -1,5 +1,6 @@
 import { Filter, ProductList } from "@/components";
 import { wixClientServer } from "@/lib/wixClientServer";
+import { env } from "@/validation/env";
 import Image from "next/image";
 import React, { Suspense } from "react";
 
@@ -11,8 +12,9 @@ type Props = {
 
 export default async function page({ searchParams }: Props) {
   const wixClient = await wixClientServer();
+  const catName = searchParams.cat && searchParams.cat.toLowerCase();
   const category = await wixClient.collections.getCollectionBySlug(
-    searchParams.cat || "all-products",
+    catName || "all-products",
   );
   return (
     <section className="relative px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
@@ -31,6 +33,8 @@ export default async function page({ searchParams }: Props) {
           <Image
             src="/images/woman.png"
             alt="women"
+            priority
+            sizes="100%"
             fill
             className="object-contain"
           />
@@ -40,6 +44,7 @@ export default async function page({ searchParams }: Props) {
       <Filter />
       {/* PRODUCTS */}
       <h1 className="mt-12 text-xl font-semibold">Shoes For You!</h1>
+
       <Suspense fallback={"Loading...."}>
         <ProductList
           categoryID={

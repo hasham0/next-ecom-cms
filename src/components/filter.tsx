@@ -1,8 +1,21 @@
-import React from "react";
+"use client";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import React, { ChangeEvent } from "react";
 
 type Props = {};
 
 const Filter = (props: Props) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+  const handleFilterChange = (
+    event: ChangeEvent<HTMLSelectElement | HTMLInputElement>,
+  ) => {
+    const { name, value } = event.target;
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+    replace(`${pathname}?${params.toString()}`);
+  };
   return (
     <section className="mt-12 flex justify-between">
       {/* Left */}
@@ -11,6 +24,7 @@ const Filter = (props: Props) => {
           name="type"
           className="rounded-2xl bg-[#EBEDED] px-4 py-2 font-medium"
           id=""
+          onChange={handleFilterChange}
         >
           <option>Type</option>
           <option value="physical">Physical</option>
@@ -21,22 +35,25 @@ const Filter = (props: Props) => {
           name="min"
           placeholder="min price"
           className="w-24 rounded-2xl pl-2 text-xs ring-1 ring-gray-400"
+          onChange={handleFilterChange}
         />
         <input
           type="text"
-          name="man"
+          name="max"
           placeholder="max price"
           className="w-24 rounded-2xl pl-2 text-xs ring-1 ring-gray-400"
+          onChange={handleFilterChange}
         />
         {/* Filter Category */}
         <select
           name="cat"
           className="rounded-2xl bg-[#EBEDED] px-4 py-2 font-medium"
           id=""
+          onChange={handleFilterChange}
         >
-          <option>Category</option>
-          <option value="New_Arrival">New Arrival</option>
-          <option value="Popular">Popular</option>
+          <option value="all-products">Category</option>
+          <option value="Accessrories">Accessrories</option>
+          <option value="Featured">Featured</option>
         </select>
         <select
           name=""
@@ -52,6 +69,7 @@ const Filter = (props: Props) => {
           name="sort"
           id=""
           className="rounded-2xl bg-white px-4 py-2 text-xs font-medium ring-1 ring-gray-400"
+          onChange={handleFilterChange}
         >
           <option>Sort By</option>
           <option value="asc price">Price (low to high)</option>
