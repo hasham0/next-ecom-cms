@@ -1,20 +1,24 @@
 "use client";
 import React, { useState } from "react";
 
-type Props = {};
+type Props = {
+  productId: string;
+  variantId: string;
+  stockNumber: number;
+};
 
-const Add = (props: Props) => {
+const Add = ({ productId, stockNumber, variantId }: Props) => {
   const [quantity, setQuantity] = useState<number>(1);
 
-  // temporray
-  const stock = 4;
+  // // temporray
+  // const stock = 4;
 
   // hanlde cart quantity
   const hanadleQuantity = (type: "dec" | "inc") => {
     if (type === "dec" && quantity > 1) {
       setQuantity((pre) => pre - 1);
     }
-    if (type === "inc" && quantity < stock) {
+    if (type === "inc" && quantity < stockNumber) {
       setQuantity((pre) => pre + 1);
     }
   };
@@ -39,8 +43,8 @@ const Add = (props: Props) => {
             </button>
           </div>
           <div className="text-xs">
-            Only <span className="text-orange-500">{stock}</span> items left!{" "}
-            {"Don't"} miss it
+            Only <span className="text-orange-500">{stockNumber}</span> items
+            left! {"Don't"} miss it
           </div>
         </div>
         <button className="disabled:ring-none w-36 rounded-3xl px-4 py-2 text-sm text-primary ring-1 ring-primary hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:text-white disabled:ring-0">

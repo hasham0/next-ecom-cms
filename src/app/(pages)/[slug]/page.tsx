@@ -17,7 +17,6 @@ export default async function SinglePage({ params: { slug } }: Props) {
     return notFound();
   }
   const product = productCheck.items[0];
-  console.log(product.productOptions);
   return (
     <section className="relative flex flex-col gap-16 px-4 md:px-8 lg:flex-row lg:px-16 xl:px-32 2xl:px-64">
       {/* Image */}
@@ -51,9 +50,9 @@ export default async function SinglePage({ params: { slug } }: Props) {
           />
         ) : (
           <Add
-          // productId={product._id!}
-          // variantId="00000000-0000-0000-0000-000000000000"
-          // stockNumber={product.stock?.quantity || 0}
+            productId={product._id!}
+            variantId="00000000-0000-0000-0000-000000000000"
+            stockNumber={product.stock?.quantity || 0}
           />
         )}
         <div className="h-[2px] bg-gray-100" />
