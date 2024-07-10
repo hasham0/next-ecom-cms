@@ -20,7 +20,7 @@ const CategoriesList = async (props: Props) => {
           >
             <div className="relative h-96 w-full bg-slate-100">
               <Image
-                src={item.media?.mainMedia?.image?.url || "cat.png"}
+                src={item.media?.mainMedia?.image?.url || "/images/cat.png"}
                 alt=""
                 fill
                 sizes="20vw"

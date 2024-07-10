@@ -8,6 +8,7 @@ import DOMPurify from "isomorphic-dompurify";
 type Props = {
   categoryID: string;
   limit?: number;
+  searchParams?: any;
 };
 
 const ProductList = async ({ categoryID, limit = 20 }: Props) => {
@@ -19,7 +20,7 @@ const ProductList = async ({ categoryID, limit = 20 }: Props) => {
     .find();
   return (
     <section className="mt-12 flex flex-wrap justify-between gap-x-8 gap-y-16">
-      {items.map((product: products.Product) => (
+      {items.map((product: products.Product, index: number) => (
         <Link
           key={product._id}
           href={`/${product.slug}`}
@@ -38,9 +39,7 @@ const ProductList = async ({ categoryID, limit = 20 }: Props) => {
             />
             {product.media?.items && (
               <Image
-                src={
-                  product.media?.items[1].image?.url || "/images/product.png"
-                }
+                src={product.media?.items[1]?.image?.url || "/product.png"}
                 alt="coffee"
                 priority
                 fill
