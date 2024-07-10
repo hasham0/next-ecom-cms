@@ -7,7 +7,7 @@ type Props = {};
 
 const CategoriesList = async (props: Props) => {
   const wixClient = await wixClientServer();
-  const cats = await wixClient.collections.queryCollections().find();
+  const cats = await wixClient?.collections?.queryCollections().find();
 
   return (
     <section className="scrollbar-hide overflow-x-scroll px-4">
