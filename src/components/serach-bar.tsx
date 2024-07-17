@@ -28,7 +28,7 @@ const SearchBar = (props: Props) => {
         name="serach"
         className="flex-1 bg-transparent outline-none"
       />
-      <button className="cursor-pointer">
+      <button type="submit" className="cursor-pointer">
         <Image
           src={"/images/search.png"}
           alt="search logo"

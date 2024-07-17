@@ -26,10 +26,12 @@ const CustomizeProducts = ({ productId, productOptions, variants }: Props) => {
     setSelectedVariant(variant);
   }, [selectedOptions, variants]);
 
+  // handle option func
   const handleOption = (optionType: string, choice: string) => {
     setSelectedOptions((prev) => ({ ...prev, [optionType]: choice }));
   };
 
+  // check variant in stocks func
   const isVariantInStock = (choices: { [key: string]: string }) => {
     return variants.some((variant) => {
       const variantChoices = variant.choices;

@@ -14,6 +14,7 @@ const NavIcons = (props: Props) => {
 
   // !: temporaray
   const isLoggedIn = false;
+
   const hanldeProfile = () => {
     if (!isLoggedIn) {
       router.push("/login");
@@ -31,12 +32,15 @@ const NavIcons = (props: Props) => {
         className="cursor-pointer"
         onClick={hanldeProfile}
       />
+      
+      {/* <!-- profile modal --> */}
       {isProfileOpen && (
         <div className="absolute left-3 top-12 z-20 rounded-md p-4 text-sm shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
           <Link href={"/"}>Profile</Link>
           <div className="mt-2 cursor-pointer">Logout</div>
         </div>
       )}
+
       <Image
         src={"/images/notification.png"}
         alt="profile"
@@ -58,6 +62,8 @@ const NavIcons = (props: Props) => {
         <div className="absolute -right-4 -top-4 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-sm text-white">
           2
         </div>
+
+        {/* <!-- cart modal --> */}
         {isCartOpen && <CartModel />}
       </div>
     </div>

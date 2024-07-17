@@ -17,7 +17,7 @@ type Props = {
   //   sort?: string;
   //   name?: string;
   // };
-  searchParams: any;
+  searchParams?: any;
 };
 const PRODUCT_PER_PAGE = 8;
 
@@ -41,6 +41,7 @@ const ProductList = async ({ categoryID, limit = 20, searchParams }: Props) => {
     );
 
   if (searchParams?.sort) {
+    console.log(searchParams.sort);
     const [sortType, sortBy] = searchParams.sort.split(" ");
 
     if (sortType === "asc") {
@@ -51,6 +52,7 @@ const ProductList = async ({ categoryID, limit = 20, searchParams }: Props) => {
     }
   }
   const productData = await response.find();
+
   return (
     <section className="mt-12 flex flex-wrap justify-between gap-x-8 gap-y-16">
       {productData.items.map((product: products.Product, index: number) => (

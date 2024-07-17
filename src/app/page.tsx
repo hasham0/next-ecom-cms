@@ -6,7 +6,7 @@ export default async function Home() {
   return (
     <section className="">
       <Slider />
-      <article className="mt-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+      <article className="media_query mt-24">
         <h2 className="text-2xl">Featured Products</h2>
         <Suspense fallback={"Loading...."}>
           <ProductList categoryID={env.ACCESSRORIES_CATEGORY_ID} limit={4} />
@@ -20,10 +20,10 @@ export default async function Home() {
           <CategoriesList />
         </Suspense>
       </article>
-      <article className="mt-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+      {/* <article className="mt-24 media_query">
         <h2 className="text-2xl">New Products</h2>
-        {/* <ProductList /> */}
-      </article>
+        <ProductList />
+      </article> */}
     </section>
   );
 }
